@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Note, User } from '../interfaces/index.interface';
+import { User } from '../interfaces';
 import { MainService } from './main.service';
 
 @Injectable({

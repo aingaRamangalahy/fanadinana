@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Mpiadina } from '../interfaces/index.interface';
+import { Mpiadina } from '../interfaces';
 import { MainService } from './main.service';
 
 @Injectable({

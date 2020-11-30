@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Note } from '../interfaces/index.interface';
+import { Note } from '../interfaces';
 import { MainService } from './main.service';
 
 @Injectable({
