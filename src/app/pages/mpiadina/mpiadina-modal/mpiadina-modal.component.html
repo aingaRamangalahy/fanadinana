@@ -1,0 +1,63 @@
+<div class="modal-body">
+  <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+    <li [ngbNavItem]="1">
+      <a ngbNavLink>Mpiadina tokana</a>
+      <ng-template ngbNavContent>
+        <form  [formGroup]="mpiadinaForm">
+          <div class="form-group">
+            <label for="dateOfBirth">Anarana</label>
+            <div class="input-group">
+              <input id="anarana" formControlName="anarana" class="form-control"  name="anarana">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="dateOfBirth">Fiangonana</label>
+            <div class="input-group">
+              <input id="fiangonana" formControlName="fiangonana" class="form-control" name="fiangonana">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="dateOfBirth">Foibe fanadinana</label>
+            <div class="input-group">
+              <input id="foibe-fanadinana" formControlName="foibe_fanadinana" class="form-control"  name="foibe-fanadinana">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="dateOfBirth">Toerana nianarana</label>
+            <div class="input-group">
+              <input id="toerana-nianarana" formControlName="toerana_nianarana" class="form-control" name="toerana-nianarana">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="dateOfBirth">Kilasy</label>
+            <div class="input-group">
+              <input id="kilasy" class="form-control" formControlName="kilasy" name="kilasy">
+            </div>
+          </div>
+        </form>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="2">
+      <a ngbNavLink>Mpiadina maro</a>
+      <ng-template ngbNavContent>
+        <form>
+        <div class="form-group">
+          <label for="dateOfBirth">Fichier excel</label>
+          <div class="input-group">
+            <input type="file" id="file" class="form-control" (change)="handleFileInput($event.target.files)">
+          </div>
+        </div>
+      </form>
+      </ng-template>
+    </li>
+  </ul>
+
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="onSubmit()">Raiketina</button>
+</div>

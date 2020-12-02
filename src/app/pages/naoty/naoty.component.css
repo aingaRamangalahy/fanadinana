@@ -1,0 +1,15 @@
+.mpiadina-row:hover {
+  cursor: pointer;
+}
+
+.note-action {
+  font-size: 25px;
+}
+
+.note-action-done {
+  color: green;
+}
+
+.note-action-add {
+  color: blue;
+}

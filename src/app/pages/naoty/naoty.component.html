@@ -1,10 +1,60 @@
-<div class="header bg-gradient-danger pb-5 pt-5 pt-md-7">
+<div class="header bg-gradient-danger pb-6 pt-6 pt-md-8">
   <div class="container-fluid">
     <div class="header-body">
-      <!-- Card stats -->
-      <div>
-          <h1 class="text-center text-white text-uppercase">fampidirana naoty</h1>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid mt--7">
+  <div class="card shadow">
+    <div class="card-header border-0">
+      <div class="row align-items-center">
+        <div class="col">
+          <h3 class="mb-0">Fampidirina naotin'ny mpiadina</h3>
+        </div>
       </div>
+    </div>
+    <div class="table-responsive">
+      <!-- Projects table -->
+      <table class="table align-items-center table-flush">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Anarana</th>
+            <th scope="col">Fiangonana</th>
+            <th scope="col">Foibe fanadinana</th>
+            <th scope="col">Toerana nianarana</th>
+            <th scope="col">Kilasy</th>
+            <th scope="col">Naoty</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="mpiadina-row" *ngFor="let mpiadina of listeMpiadina" (click)="showNote(mpiadina?.id_mpiadina)">
+            <td>
+              {{mpiadina?.anarana}}
+            </td>
+            <td>
+              {{mpiadina?.fiangonana}}
+            </td>
+            <td>
+              {{mpiadina?.foibe_fanadinana}}
+            </td>
+            <td>
+              {{mpiadina?.toerana_nianarana}}
+            </td>
+            <td>
+              {{mpiadina?.kilasy}}
+            </td>
+            <td>
+              <i *ngIf="mpiadina && mpiadina.id_note; else add" class="fa fa-check-square note-action note-action-done"></i>
+
+              <ng-template #add>
+                <i class="fa fa-plus-square note-action note-action-add"></i>
+              </ng-template>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

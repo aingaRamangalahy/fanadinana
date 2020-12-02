@@ -1,10 +1,115 @@
-<div class="header bg-gradient-success pb-5 pt-5 pt-md-7">
+<div class="header bg-gradient-danger pb-6 pt-6 pt-md-8">
   <div class="container-fluid">
     <div class="header-body">
-      <!-- Card stats -->
-      <div>
-          <h1 class="text-center text-white text-uppercase">Valim-panadinana</h1>
-      </div>
     </div>
   </div>
 </div>
+
+<div class="container-fluid mt--7">
+  <div class="card shadow">
+    <div class="card-header border-0">
+      <div class="row align-items-center">
+        <div class="col d-flex align-items-center">
+          <h3 class="mb-0">Délibération</h3>
+          <div class="col-md-3">
+            <input type="text" class="form-control" name="delib" [(ngModel)]="delib">
+          </div>
+          <button class="btn btn-primary" (click)="showResults()">Valiny</button>
+        </div>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <!-- Projects table -->
+      <table class="table align-items-center table-flush">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Anarana</th>
+            <th scope="col">Fiangonana</th>
+            <th scope="col">Foibe fanadinana</th>
+            <th scope="col">Toerana nianarana</th>
+            <th scope="col">Kilasy</th>
+            <th scope="col">Salan'isa</th>
+            <th scope="col">Afaka</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="canShow">
+          <tr *ngFor="let mpiadina of listeMpiadina">
+            <td>
+              {{mpiadina?.anarana}}
+            </td>
+            <td>
+              {{mpiadina?.fiangonana}}
+            </td>
+            <td>
+              {{mpiadina?.foibe_fanadinana}}
+            </td>
+            <td>
+              {{mpiadina?.toerana_nianarana}}
+            </td>
+            <td>
+              {{mpiadina?.kilasy}}
+            </td>
+            <td>
+              {{mpiadina?.moyenne}}
+            </td>
+            <td>
+              <i *ngIf="mpiadina && mpiadina.afaka; else add" class="fa fa-check-square note-action note-action-ok"></i>
+
+              <ng-template #add>
+                <i class="fa fa-times note-action note-action-nok"></i>
+              </ng-template>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<!--
+  Modal
+ -->
+ <ng-template #noteModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Fampidirana naoty</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="dateOfBirth">Maths</label>
+        <div class="input-group">
+          <input id="math" class="form-control"  name="math" >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="dateOfBirth">Science</label>
+        <div class="input-group">
+          <input id="science" class="form-control"  name="science" >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="dateOfBirth">Malagasy</label>
+        <div class="input-group">
+          <input id="malagsy" class="form-control"  name="malagsy" >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="dateOfBirth">Histoire</label>
+        <div class="input-group">
+          <input id="histoire" class="form-control"  name="histoire" >
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Raiketina</button>
+  </div>
+</ng-template>
+

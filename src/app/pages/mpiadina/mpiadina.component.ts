@@ -1,45 +1,61 @@
-import { Component, OnInit } from '@angular/core';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 
+import { Subject } from "rxjs";
+import { takeUntil } from "rxjs/operators";
+
+import { Mpiadina } from "src/app/core/interfaces";
+import { MpiadinaService } from "src/app/core/services/mpiadina.service";
+import { MpiadinaModalComponent } from "./mpiadina-modal/mpiadina-modal.component";
 @Component({
-  selector: 'app-mpiadina',
-  templateUrl: './mpiadina.component.html',
-  styleUrls: ['./mpiadina.component.css']
+  selector: "app-mpiadina",
+  templateUrl: "./mpiadina.component.html",
+  styleUrls: ["./mpiadina.component.css"],
 })
-export class MpiadinaComponent implements OnInit {
+export class MpiadinaComponent implements OnInit, OnDestroy {
+  closeResult = "";
 
-  closeResult = '';
-  active = 1;
+  listeMpiadina: Mpiadina[];
 
-  fileToUpload: File = null;
+  unsubscribeAll: Subject<boolean>;
 
-  constructor(private modalService: NgbModal) { }
+  constructor(
+    private modalService: NgbModal,
+    private mpiadinaService: MpiadinaService
+  ) {
+    this.unsubscribeAll = new Subject();
+  }
 
   ngOnInit(): void {
+    this.loadMpiadina();
   }
 
-  openAddModal(addModal) {
-    this.modalService.open(addModal, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-      console.log(this.closeResult)
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      console.log(this.closeResult)
-    });
+  ngOnDestroy(): void {
+    this.unsubscribeAll.next();
+    this.unsubscribeAll.complete();
   }
 
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
+  loadMpiadina() {
+    this.mpiadinaService
+      .getAll()
+      .pipe(takeUntil(this.unsubscribeAll))
+      .subscribe((result) => {
+        if (result && result.data) {
+          this.listeMpiadina = result.data;
+          console.log(this.listeMpiadina);
+        }
+      });
   }
 
-  handleFileInput(files: FileList) {
-    this.fileToUpload = files.item(0);
+  openAddModal() {
+    const modalRef = this.modalService.open(MpiadinaModalComponent);
+
+    modalRef.result
+      .then((result) => {
+        console.log("modal result:", result);
+        this.loadMpiadina();
+      })
+      .catch((err) => console.log(err));
   }
 
   // uploadFileToActivity() {
@@ -60,5 +76,4 @@ export class MpiadinaComponent implements OnInit {
   //     .map(() => { return true; })
   //     .catch((e) => this.handleError(e));
   //}
-
 }

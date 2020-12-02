@@ -1,0 +1,40 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Fampidirana naoty</h4>
+  <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button> -->
+</div>
+<div class="modal-body">
+  <form [formGroup]="noteForm">
+    <div class="form-group">
+      <label for="dateOfBirth">Maths</label>
+      <div class="input-group">
+        <input id="math" formControlName="math" class="form-control"  name="math" >
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="dateOfBirth">Science</label>
+      <div class="input-group">
+        <input id="science" formControlName="science" class="form-control"  name="science" >
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="dateOfBirth">Malagasy</label>
+      <div class="input-group">
+        <input id="malagasy" formControlName="malagasy" class="form-control"  name="malagasy" >
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="dateOfBirth">Histoire</label>
+      <div class="input-group">
+        <input id="histoire" formControlName="histoire" class="form-control"  name="histoire" >
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="onSubmit()">Raiketina</button>
+</div>

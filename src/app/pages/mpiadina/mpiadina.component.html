@@ -13,7 +13,7 @@
           <h3 class="mb-0">Lisitr'ireo mpiadina</h3>
         </div>
         <div class="col text-right">
-          <button  class="btn btn-md btn-primary" (click)="openAddModal(addModal)">Mampiditra mpiadina</button>
+          <button  class="btn btn-md btn-primary" (click)="openAddModal()">Mampiditra mpiadina</button>
         </div>
       </div>
     </div>
@@ -30,21 +30,21 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr *ngFor="let mpiadina of listeMpiadina">
             <td scope="row">
-              Ainga Ramangalahy
+              {{mpiadina?.anarana}}
             </td>
             <td>
-              Fjkm betela fanantenana
+              {{mpiadina?.fiangonana}}
             </td>
             <td>
-              abcde
+              {{mpiadina?.foibe_fanadinana}}
             </td>
             <td>
-              Xavier
+              {{mpiadina?.toerana_nianarana}}
             </td>
             <td>
-              Faha 5
+              {{mpiadina?.kilasy}}
             </td>
           </tr>
 
@@ -53,73 +53,4 @@
     </div>
   </div>
 </div>
-
-<!--
-  Modal
- -->
-<ng-template #addModal let-modal>
-  <div class="modal-body">
-    <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
-      <li [ngbNavItem]="1">
-        <a ngbNavLink>Mpiadina tokana</a>
-        <ng-template ngbNavContent>
-          <form>
-            <div class="form-group">
-              <label for="dateOfBirth">Anarana</label>
-              <div class="input-group">
-                <input id="anarana" class="form-control"  name="anarana">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="dateOfBirth">Fiangonana</label>
-              <div class="input-group">
-                <input id="fiangonana" class="form-control" name="fiangonana">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="dateOfBirth">Foibe fanadinana</label>
-              <div class="input-group">
-                <input id="foibe-fanadinana" class="form-control"  name="foibe-fanadinana">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="dateOfBirth">Toerana nianarana</label>
-              <div class="input-group">
-                <input id="toerana-nianarana" class="form-control" name="toerana-nianarana">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="dateOfBirth">Kilasy</label>
-              <div class="input-group">
-                <input id="kilasy" class="form-control"  name="kilasy">
-              </div>
-            </div>
-          </form>
-        </ng-template>
-      </li>
-      <li [ngbNavItem]="2">
-        <a ngbNavLink>Mpiadina maro</a>
-        <ng-template ngbNavContent>
-          <form>
-          <div class="form-group">
-            <label for="dateOfBirth">Fichier excel</label>
-            <div class="input-group">
-              <input type="file" id="file" class="form-control" (change)="handleFileInput($event.target.files)">
-            </div>
-          </div>
-        </form>
-        </ng-template>
-      </li>
-    </ul>
-
-    <div [ngbNavOutlet]="nav" class="mt-2"></div>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Raiketina</button>
-  </div>
-</ng-template>
 

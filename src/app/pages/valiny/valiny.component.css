@@ -1,0 +1,11 @@
+.note-action {
+  font-size: 25px;
+}
+
+.note-action-ok {
+  color: green;
+}
+
+.note-action-nok {
+  color: red;
+}
